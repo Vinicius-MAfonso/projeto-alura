@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <title>{{ title }}</title>
+</head>
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+            <ul id="messages" class="list-unstyled">
+                {% for category, message in messages %}
+                        <li class="alert alert-{{category}}">{{message}}</li>
+                {% endfor %}
+            </ul>
+    {% endif %}
+{% endwith %}
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>{{ title }}</h1>
+        </div>
+    {% block content %}
+    {% endblock %}
+    </div>
+</body>
+</html>
